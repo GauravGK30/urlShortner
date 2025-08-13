@@ -1,5 +1,5 @@
 
-const {v4: uuidv4} = require('uuid');
+// const {v4: uuidv4} = require('uuid');
 const User = require('../models/user');
 const {setUser,getUser} =require('../service/auth')
 
@@ -31,13 +31,17 @@ async function handleUserLogin(req,res){
         })
     }
 
-    const sessionId = uuidv4();
-    setUser(sessionId,user);
-    res.cookie("uid", sessionId, {
-    httpOnly: true,
-    sameSite: 'lax'
-    });
+    // const sessionId = uuidv4();
+    // setUser(sessionId,user);
+
+    const token = setUser(user)
+    // res.cookie("uid", token, {
+    // httpOnly: true,
+    // sameSite: 'lax',
+    // expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+    // });
     return res.redirect("/");
+    // return res.json({token});
 
 }
 
