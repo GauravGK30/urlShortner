@@ -35,11 +35,11 @@ async function handleUserLogin(req,res){
     // setUser(sessionId,user);
 
     const token = setUser(user)
-    // res.cookie("uid", token, {
-    // httpOnly: true,
-    // sameSite: 'lax',
-    // expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-    // });
+    res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: 'lax',
+    expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+    });
     return res.redirect("/");
     // return res.json({token});
 
